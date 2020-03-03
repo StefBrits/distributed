@@ -1,0 +1,63 @@
+/**************************************************************************//**
+ * @file
+ * @brief Simple LED Blink Demo for SLSTK3400A_EFM32HG
+ * @version 4.4.0
+ ******************************************************************************
+ * @section License
+ * <b>Copyright 2015 Silicon Labs, Inc. http://www.silabs.com</b>
+ *******************************************************************************
+ *
+ * This file is licensed under the Silabs License Agreement. See the file
+ * "Silabs_License_Agreement.txt" for details. Before using this software for
+ * any purpose, you must agree to the terms of that agreement.
+ *
+ ******************************************************************************/
+
+#include "em_device.h"
+#include <stdint.h>
+#include "em_chip.h"
+#include "em_cmu.h"
+#include "bsp.h"
+
+
+/**************************************************************************//**
+ * @brief SysTick_Handler
+ * Interrupt Service Routine for system tick counter
+ *****************************************************************************/
+
+/**************************************************************************//**
+ * @brief  Main function
+ *****************************************************************************/
+int main(void)
+{
+
+	CHIP_Init();
+	int8_t test1 = 2;
+	int16_t test2 = 3;
+	int8_t test3[3] = {1,2,3};
+
+	int16_t *test1_ptr = &test1;
+
+
+  /* Chip errata */
+
+
+// timer0 aanzetten met HFPERCLKEN0
+  CMU->HFPERCLKEN0 = CMU->HFPERCLKEN0 | CMU_HFPERCLKEN0_TIMER0;
+
+
+
+
+// start timer0
+  TIMER0->CMD |= 1;
+
+  while(TIMER0->CNT < 1000){
+    /* Do nothing, just wait */
+   }
+
+  /* Infinite blink loop */
+  while (1)
+  {
+
+  }
+}
